@@ -3,13 +3,8 @@
 namespace app\controllers;
 
 use app\models\Article;
-use Yii;
-use yii\filters\AccessControl;
+use yii\data\Pagination;
 use yii\web\Controller;
-use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 
 class SiteController extends Controller
 {
@@ -35,9 +30,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $query = Article::find()->orderBy(["modified_at" => SORT_DESC]);
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 10]);
+        $posts = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
         return $this->render('index',
             [
-                "articles" => Article::find()->orderBy(["modified_at"=>SORT_DESC])->all()
+                "articles" => $posts,
+                "pages" => $pages
             ]
         );
     }

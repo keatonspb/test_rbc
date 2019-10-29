@@ -2,6 +2,8 @@
 
 /* @var $this yii\web\View */
 
+use yii\widgets\LinkPager;
+
 $this->title = 'RBC news';
 ?>
 <div class="site-index">
@@ -14,5 +16,9 @@ $this->title = 'RBC news';
             </p>
             <a href="/article/?id=<?= $article->id ?>">подробнее</a>
         </div>
+
     <?php } ?>
+    <?= LinkPager::widget([
+        'pagination' => $pages,
+    ]); ?>
 </div>

@@ -1,0 +1,1 @@
+* * * * * php /var/www/yii grabber >> /var/log/cron.log 2>&1
