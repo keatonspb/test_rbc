@@ -12,7 +12,9 @@ $this->title = 'RBC news';
         <div>
             <h3><?= $article->title ?></h3>
             <p>
-                <?= mb_substr(strip_tags($article->content), 0, 200) . (count_chars($article->content) > 200 ? "..." : "") ?>
+                <? $content = strip_tags(preg_replace('/\s+/', ' ', $article->content)); ?>
+                <?= (strlen($content) <= 200) ? $content : mb_substr($content, 0, 200)."..."; ?>
+
             </p>
             <a href="/article/?id=<?= $article->id ?>">подробнее</a>
         </div>
