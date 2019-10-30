@@ -23,6 +23,11 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
+<style>
+    img {
+        max-width: 100%;
+    }
+</style>
 <body>
 <?php $this->beginBody() ?>
 
